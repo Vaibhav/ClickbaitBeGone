@@ -1,18 +1,24 @@
 {
-  "manifest_version": 1,
-  "icons": { "128": "images/icon.png" },
+  "manifest_version": 2,
+	"name": "Click Bait Be Gone",
+  "description": "Gets rid off useless clickbait articles to increase user productivity",
+  "version": "0.1",
+  "icons": {
+		"128": "images/icon.png",
+		"64": "images/icon64.png"
+	},
   "browser_action": {
     "default_icon": "images/icon.png",
     "default_popup": "html/popup.html"
   },
   "background": { "scripts": ["js/background.js"] },
   "content_scripts": [{
-    "matches": [ "http://*/*", "https://*/*" ],
+    "matches": [ "<all_urls>" ],
     "js": [ "js/content.js" ]
   }],
   "options_page": "html/options.html",
   "devtools_page": "html/devtools.html",
-  "permissions": [ "<all_urls>" ],
+  "permissions": [ "<all_urls>", "activeTab", "storage" ],
   "web_accessible_resources": [ "js/*", "html/*", "css/*", "images/*" ],
   "content_security_policy": "script-src 'self'; object-src 'self'"
 }
