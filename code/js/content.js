@@ -1,3 +1,4 @@
+/*
 ;(function() {
   console.log('CONTENT SCRIPT WORKS!');
 
@@ -17,3 +18,27 @@
 
   console.log('jQuery version:', $().jquery);
 })();
+*/
+
+const listOfRegex = []
+
+function checkIfClickbait(title)
+{
+
+	len = title.length
+	//check if title is long/short enough to be clickbait 
+	if (len > 80 || len < 15) return 0;
+
+	return listOfRegex.some(function(clickbait, thisObj)
+	{
+		//Error Handling
+		if (typeof clickbait != "function") throw new TypeError();
+
+		if (clickbait.test(title))
+		{
+			//console.log(thisObj, title);
+			return 1;
+		}
+	});
+
+}
