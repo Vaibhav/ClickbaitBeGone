@@ -24,9 +24,8 @@ const listOfRegex = []
 
 function checkIfClickbait(title)
 {
-
 	len = title.length
-	//check if title is long/short enough to be clickbait 
+	//check if title is long/short enough to be clickbait
 	if (len > 80 || len < 15) return 0;
 
 	return listOfRegex.some(function(clickbait, thisObj)
@@ -40,5 +39,16 @@ function checkIfClickbait(title)
 			return 1;
 		}
 	});
+}
 
+
+
+function changeClickbait(item)
+{
+	if(checkIfClickbait(item.textContent) == 1){
+		item.style.textDecoration = 'line-through';
+		item.setAttribute('href', 'about:blank');
+		item.removeAttribute('onclick')
+		item.removeAttribute('onmouseover')
+	}
 }
