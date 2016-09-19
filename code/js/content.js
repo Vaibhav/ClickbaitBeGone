@@ -1,7 +1,5 @@
-/*
 ;(function() {
   console.log('CONTENT SCRIPT WORKS!');
-
   var $ = require('./libs/jquery');
   // here we use SHARED message handlers, so all the contexts support the same
   // commands. but this is NOT typical messaging system usage, since you usually
@@ -14,13 +12,12 @@
   // issue command requests from this context), you may simply omit the
   // `handlers` parameter for good when invoking msg.init()
   var handlers = require('./modules/handlers').create('ct');
-  require('./modules/msg').init('ct', handlers);
-
+  //require('./modules/msg').init('ct', handlers);
   console.log('jQuery version:', $().jquery);
 })();
-*/
 
-const listOfRegex = []
+
+listOfRegex = []
 
 function checkIfClickbait(title)
 {
@@ -40,7 +37,6 @@ function checkIfClickbait(title)
 		}
 	});
 }
-
 
 
 function changeClickbait(item)
