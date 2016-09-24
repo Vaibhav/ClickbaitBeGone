@@ -17,7 +17,10 @@
 })();
 
 
-listOfRegex = []
+const listOfRegex = [
+	/you won['’]?t believe/i,
+	/what happens next/i, 
+];
 
 function checkIfClickbait(title)
 {
@@ -43,8 +46,20 @@ function changeClickbait(item)
 {
 	if(checkIfClickbait(item.textContent) == 1){
 		item.style.textDecoration = 'line-through';
-		item.setAttribute('href', 'about:blank');
+		// attempted to change the link to which clickbait leads to.
+		item.setAttribute('href', 'about:blank'); //currently not working for facebook.
 		item.removeAttribute('onclick')
 		item.removeAttribute('onmouseover')
 	}
 }
+
+function recurseClickbaitLinks(item) {
+	// Check all links for Clickbait titles
+	items = item.getElementsByTagName('a');
+	//use spread operator and pass each of the items through clickbait checker
+	[...items].forEach(changeClickbait);
+}
+
+
+recurseClickbaitLinks(document.body);
+initObserver();
