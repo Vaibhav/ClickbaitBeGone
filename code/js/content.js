@@ -22,11 +22,28 @@ const listOfRegex = [
 	/what happens next/i, 
 ];
 
+function initObserver() {
+	const observer = new MutationObserver( function(mutations) {
+
+		mutations.forEach( function (mut) {
+
+			mut.addedNodes.forEach( function (node) {
+
+				if (node.nodeType === Node.ELEMENT_NODE){
+					recurseClickbaitLinks(node);
+				}
+
+			});
+		});
+	});
+	observer.observe( document.body, { childList: true, subtree: true } );
+}
+
 function checkIfClickbait(title)
 {
 	len = title.length
 	//check if title is long/short enough to be clickbait
-	if (len > 80 || len < 15) return 0;
+	if (len >= 100 || len < 16) return false;
 
 	return listOfRegex.some(function(clickbait, thisObj)
 	{
@@ -35,8 +52,8 @@ function checkIfClickbait(title)
 
 		if (clickbait.test(title))
 		{
-			//console.log(thisObj, title);
-			return 1;
+			console.log(thisObj, title);
+			return true;
 		}
 	});
 }
@@ -46,6 +63,7 @@ function changeClickbait(item)
 {
 	if(checkIfClickbait(item.textContent) == 1){
 		item.style.textDecoration = 'line-through';
+
 		// attempted to change the link to which clickbait leads to.
 		item.setAttribute('href', 'about:blank'); //currently not working for facebook.
 		item.removeAttribute('onclick')
@@ -54,6 +72,7 @@ function changeClickbait(item)
 }
 
 function recurseClickbaitLinks(item) {
+
 	// Check all links for Clickbait titles
 	items = item.getElementsByTagName('a');
 	//use spread operator and pass each of the items through clickbait checker
@@ -61,5 +80,6 @@ function recurseClickbaitLinks(item) {
 }
 
 
+//Call methods to update page
 recurseClickbaitLinks(document.body);
 initObserver();
