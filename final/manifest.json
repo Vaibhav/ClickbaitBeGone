@@ -1,0 +1,13 @@
+{
+	"name": "Clickbait-Be-Gone",
+	"description": "Gets rid off useless clickbait articles to increase user productivity",
+	"version": "1.0",
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"]
+		}
+    ],
+    "permissions": [ "<all_urls>", "activeTab" ],
+	"manifest_version": 2
+}
