@@ -46,10 +46,10 @@ const listOfRegex = [
 	/won['’]?t believe/i,
 	/\s(celebrit|epic|fantastic|genius|heartbreaking|incredibl|powerful|shocking|teen|terribl|unusual|weirdly)/i,
 	/[0-9]+ (tips|jokes|tricks|magic|secrets)/i,
-	/[0-9]+ (people|kids|funniest|hot|sexiest|sexy|sex)/i,
+	/[0-9]+ (people|kids|funniest|hot|sexiest|sexy|sex|friends)/i,
 	/[0-9]+ (awesome|must|excited|needed|amazing)? products/i,
 	/[0-9]+ (of the|of|tweets)/i,
-	/[0-9]+ pranks/i,
+	/[0-9]+ (pranks|products|product|positions)/i,
 	/[0-9]+ (high|middle) school/i
 ];
 
